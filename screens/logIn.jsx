@@ -4,52 +4,61 @@ import BotonOne from "../components/BotonOne";
 import { useNavigation } from '@react-navigation/native';
 
 import {enterlogin} from '../services/loginService';
+import Girador from '../components/girador';
 
 const logIn =({navigation})=>{
  
   const [userState, setUserState] = useState({
-    usuario: '',
+    email: '',
     password: '',
   });
 
+  const [loaded, setLoaded] = useState(false)
+
   const onLogInPress = async (e) => {
     
-    if (!userState.usuario|| !userState.password){
+    if (!userState.email|| !userState.password){
       
       Alert.alert("Por favor ingresar todos los datos")
     } else {
-      
+      setLoaded(true)
       await enterlogin(userState).then(() => {
+        setLoaded(false)
         Alert.alert("correctooooo")
-        
+        navigation.navigate("Home")
       })
       .catch(() => {
-        
+        setLoaded(false)
         Alert.alert("Datos incorrectos")
       });
     }
   }
 
+
+ 
+
   return (
 
+
           <View style={styles.vista}>
+            {loaded && <Girador/>}
   
         <Text style={styles.titulo}>Inicio de sesión</Text>
         
         <TextInput
             style={styles.textInput}
             
-            placeholder="Ingrese su usuario"
-            name="usuario"
-            value={userState.usuario}
-            onChangeText={text => setUserState({...userState, usuario: text}) }
+            placeholder="Ingrese su Email"
+            name="Email"
+            value={userState.email}
+            onChangeText={text => setUserState({...userState, email: text}) }
           
           />
           
           <TextInput
             style={styles.textInput}
-            placeholder="Ingrese su Contraseña"
-            name="contrasena"
+            placeholder="Ingrese su Password"
+            name="Password"
             value={userState.password}
             secureTextEntry={true}
             onChangeText={text => setUserState({...userState, password: text})}
@@ -82,6 +91,7 @@ const styles = StyleSheet.create({
     height: 900,
     alignItems: 'center',
     backgroundColor: 'gray',
+    
     
 
   },
@@ -118,4 +128,5 @@ const styles = StyleSheet.create({
     left:'10%',
     color:"blue"
   }
+
 });
