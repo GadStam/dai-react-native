@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color: 'blue',
     fontSize:25,
-    fontFamily: 'Kanit-Regular'
+    
   },
   texto:{
     marginTop:'-25%',

@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import {searchRecipe} from '../services/platoService'
 
 const Home =({navigation})=>{
-    const [plato, setPlato] = useState();
+    const [plato, setPlato] = useState("");
 
     const [platoBuscar, setPlatoBuscar] = useState({
         lista: []
@@ -19,6 +19,8 @@ const Home =({navigation})=>{
     
         if (!plato){  
           Alert.alert("Por favor ingresa un plato")
+          console.log("no escribiste")
+          console.log(plato)
         } else {
           await searchRecipe(plato).then((response) => {
             console.log("entro")
@@ -46,10 +48,12 @@ const Home =({navigation})=>{
             
             placeholder="Buscador"
             name="Buscador"
-            value={useState.plato}
+            value={plato}
             onChangeText={text => setPlato({...setPlato, plato: text}) }
           
           />
+
+
           <BotonOne
             text="Iniciar Sesion"
             title="Iniciar Sesion"
@@ -90,6 +94,10 @@ const styles = StyleSheet.create({
     top: '45%',
     color: 'blue',
     fontSize: 30,
-    fontFamily: 'Kanit-Regular'
+    
   },
+  textInput:{
+    marginTop: 200,
+    backgroundColor:'white'
+  }
 });
