@@ -53,7 +53,7 @@ const Home =({navigation})=>{
   return (
 
       <View>
-      <Text style={styles.titulo}>HOME</Text>
+      
       <TextInput
             style={styles.textInput}
             
@@ -79,7 +79,10 @@ const Home =({navigation})=>{
             data={platoBuscar.lista}
             renderItem={({item}) =>(
 
-            <Text>{item.title}, {item.id}, {item.image}</Text>
+           <CardsComidas title = {item.title}
+           image = {item.image}
+           id = {item.id}
+           />
           
             
          )}
@@ -87,7 +90,9 @@ const Home =({navigation})=>{
         
             }
 
-            <CardsComidas/>
+
+
+            
      </View>
      
 

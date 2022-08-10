@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { StyleSheet} from 'react-native';
 
-const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
+//const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
-const CardsComidas = () => (
-  <Card>
-    <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
+const CardsComidas = (props) => (
+  <Card style={styles.carta}>
+    
     <Card.Content>
-      <Title>Card title</Title>
-      <Paragraph>Card content</Paragraph>
+      <Title>{props.title}</Title>
+     
     </Card.Content>
-    <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+    <Card.Cover source={{ uri: props.image }} />
     <Card.Actions>
       <Button>Cancel</Button>
       <Button>Ok</Button>
@@ -19,3 +20,10 @@ const CardsComidas = () => (
 );
 
 export default CardsComidas;
+
+
+const styles = StyleSheet.create({
+  carta: {
+    marginTop:20
+}
+});

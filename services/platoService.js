@@ -24,7 +24,7 @@ export const searchRecipe = async (comida) => {
 export const getReciepesInformation = async (userState) => {
     console.log(userState)
     return alkemyClient
-      .post(``, {
+      .post(`recipes/${id}/information`, {
         ...userState
       })
       .then(async(res) => {
