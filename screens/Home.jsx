@@ -5,9 +5,12 @@ import { useState } from 'react';
 import BotonOne from "../components/BotonOne";
 import { useNavigation } from '@react-navigation/native';
 import {searchRecipe} from '../services/platoService'
+import CardsComidas from '../components/CardsComidas';
 
 const Home =({navigation})=>{
-    const [plato, setPlato] = useState("");
+    const [plato, setPlato] = useState({
+      platoComida:""
+    });
 
     const [platoBuscar, setPlatoBuscar] = useState({
         lista: []
@@ -16,18 +19,26 @@ const Home =({navigation})=>{
     const [loadState, setLoaded] = useState(false)
     
       const onLogInPress = async (e) => {
-    
-        if (!plato){  
+
+
+        let largo = plato.platoComida.length
+        
+
+
+        if (!plato.platoComida || largo < 3){  
           Alert.alert("Por favor ingresa un plato")
           console.log("no escribiste")
-          console.log(plato)
+          
         } else {
-          await searchRecipe(plato).then((response) => {
+          
+          await searchRecipe(plato.platoComida).then((response) => {
             console.log("entro")
-            setLoaded(false)
+            console.log(response)
+            setLoaded(true)
             setPlatoBuscar({lista: response})
+            console.log("tus comidas", platoBuscar.lista )
+           
 
-            console.log("hola,", response)
             Alert.alert("correctooooo")
           })
           .catch(() => {
@@ -48,8 +59,8 @@ const Home =({navigation})=>{
             
             placeholder="Buscador"
             name="Buscador"
-            value={plato}
-            onChangeText={text => setPlato({...setPlato, plato: text}) }
+            value={plato.platoComida}
+            onChangeText={text => setPlato({...plato, platoComida: text}) }
           
           />
 
@@ -59,17 +70,24 @@ const Home =({navigation})=>{
             title="Iniciar Sesion"
             onPress={onLogInPress}
             />
+
+
         {
             loadState
-            ? <FlatList
+            &&<FlatList
             keyExtractor={(item) => item.title}
             data={platoBuscar.lista}
             renderItem={({item}) =>(
-            <Text>{item.title}</Text>
+
+            <Text>{item.title}, {item.id}, {item.image}</Text>
+          
+            
          )}
         />
-        : <Text></Text>
-        }
+        
+            }
+
+            <CardsComidas/>
      </View>
      
 

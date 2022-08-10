@@ -16,10 +16,7 @@ return(
         headerShown:false
     }
     }>
-        <Stack.Screen
-            name='logIn'
-            component={ logIn }
-        />
+        
         <Stack.Screen
             name='Home'
             component={ Home }
