@@ -21,14 +21,14 @@ export const searchRecipe = async (comida) => {
     });
 };
 
-export const getReciepesInformation = async (userState) => {
-    console.log(userState)
+export const getReciepesInformation = async (id) => {
+    console.log(id)
     return alkemyClient
-      .post(`recipes/${id}/information`, {
-        ...userState
+      .get(`recipes/${id}/information?apiKey=5fbfaca6af9949e48de98190593f70f9`, {
+        
       })
       .then(async(res) => {
-        
+        console.log(res.data)
       })
       .catch((e) => {
         console.log(`register error`, e.response);
