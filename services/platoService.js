@@ -23,12 +23,15 @@ export const searchRecipe = async (comida) => {
 
 export const getReciepesInformation = async (id) => {
     console.log(id)
-    return alkemyClient
+    return spoonClient
       .get(`recipes/${id}/information?apiKey=5fbfaca6af9949e48de98190593f70f9`, {
         
       })
       .then(async(res) => {
-        console.log(res.data)
+        
+        const info=res.data
+        
+        return info
       })
       .catch((e) => {
         console.log(`register error`, e.response);

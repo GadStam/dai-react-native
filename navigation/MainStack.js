@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import logIn from '../screens/logIn'
 import Home from '../screens/Home'
+import InformacionPlatos from '../screens/InformacionPlatos'
 const Stack = createNativeStackNavigator()
 
 const MainStack =()=>{
@@ -17,10 +18,17 @@ return(
     }
     }>
         
-        <Stack.Screen
-            name='Home'
-            component={ Home }
-        />
+        <Stack.Screen 
+            name='Home'>
+                {(props) => <Home {...props}
+            />}
+        </Stack.Screen>
+
+        <Stack.Screen 
+            name='InformacionPlatos'>
+                {(props) => <InformacionPlatos {...props}
+            />}
+        </Stack.Screen>
 
         
          

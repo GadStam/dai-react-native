@@ -4,26 +4,22 @@ import { StyleSheet, Alert} from 'react-native';
 import Boton from './BotonOne'
 import {getReciepesInformation} from '../services/platoService'
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 
 
 
 const CardsComidas = (props) => {
-  const [informacion, setInformacion] = useState({
-    info:[]
-  })
   
-  const masInformacion = async (e) => {
-      await getReciepesInformation(props.id).then((response) => {
-        console.log(response)
-        setInformacion({info: response})
-      })
-      .catch(() => {
-        console.log("noooo")
-        
-        Alert.alert("Datos incorrectos")
-      });
+
+  const navigation = useNavigation();
+  
+    const navegarInfo = async (e) => {
+      console.log(props.id)
+      navigation.navigate("InformacionPlatos", {idPlato: props.id})
     }
+
+    
   return(
   <Card style={styles.carta}>
     
@@ -36,11 +32,13 @@ const CardsComidas = (props) => {
     <Boton
             text="Mas Info"
             title="Mas Info"
-            onPress={masInformacion}
+            onPress={navegarInfo}
             />
       <Button>Ok</Button>
     </Card.Actions>
   </Card>
+
+  
   )
 };
 

@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import {searchRecipe} from '../services/platoService'
 import CardsComidas from '../components/CardsComidas';
 
-const Home =({navigation})=>{
+const Home =({navigation, route})=>{
     const [plato, setPlato] = useState({
       platoComida:""
     });
@@ -17,21 +17,23 @@ const Home =({navigation})=>{
     })
         
     const [loadState, setLoaded] = useState(false)
+
+
+
+
+
     
-      const onLogInPress = async (e) => {
+      const onBusquedaPress = async (buscado) => {
 
-
-        let largo = plato.platoComida.length
+        let largo = buscado.length
         
-
-
-        if (!plato.platoComida || largo < 3){  
+        if (!buscado || largo < 3){  
           Alert.alert("Por favor ingresa un plato")
-          console.log("no escribiste")
+         
           
         } else {
           
-          await searchRecipe(plato.platoComida).then((response) => {
+          await searchRecipe(buscado).then((response) => {
             console.log("entro")
             console.log(response)
             setLoaded(true)
@@ -60,16 +62,12 @@ const Home =({navigation})=>{
             placeholder="Buscador"
             name="Buscador"
             value={plato.platoComida}
-            onChangeText={text => setPlato({...plato, platoComida: text}) }
+            onChangeText={(buscado) => {setPlato({platoComida: buscado});onBusquedaPress(buscado)}}
           
           />
 
 
-          <BotonOne
-            text="Iniciar Sesion"
-            title="Iniciar Sesion"
-            onPress={onLogInPress}
-            />
+        
 
 
         {
@@ -82,6 +80,7 @@ const Home =({navigation})=>{
            <CardsComidas title = {item.title}
            image = {item.image}
            id = {item.id}
+
            />
           
             
