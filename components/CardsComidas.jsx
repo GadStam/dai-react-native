@@ -16,7 +16,7 @@ const CardsComidas = (props) => {
   
     const navegarInfo = async (e) => {
       console.log(props.id)
-      navigation.navigate("InformacionPlatos", {idPlato: props.id})
+      navigation.navigate("InformacionPlatos", {idPlato: props.id, foodImage: props.image, foodTitle: props.title})
     }
 
     

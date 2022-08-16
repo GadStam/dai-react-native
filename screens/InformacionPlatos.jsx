@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, ImageBackground, FlatList, TextInput, To
 import BotonOne from "../components/BotonOne";
 import { useNavigation } from '@react-navigation/native';
 import { getReciepesInformation } from '../services/platoService';
-
+import CardsComidas from '../components/CardsComidas'
 import {enterlogin} from '../services/loginService';
 import Girador from '../components/girador';
 
@@ -11,11 +11,12 @@ import Girador from '../components/girador';
 
 const InformacionPlatos =({navigation, route})=>{
     const id = route.params.idPlato
+    const image= route.params.foodImage
+    const title=route.params.foodTitle
 
 
-    const [informacion, setInformacion] = useState({
-        info:{}
-      })
+
+    const [informacion, setInformacion] = useState([])
 
       const [loadState, setLoaded] = useState(false)
  
@@ -23,8 +24,8 @@ const InformacionPlatos =({navigation, route})=>{
       await getReciepesInformation(id).then((response) => {
         console.log("hola",response)
         setLoaded(true)
-        setInformacion({info: response})
-        console.log(informacion.info, "goda")
+        setInformacion(response)
+        console.log(informacion, "goda")
       })
       .catch(() => {
         console.log("noooo")
@@ -46,9 +47,20 @@ const InformacionPlatos =({navigation, route})=>{
 
              {
             loadState
-            &&<Text>es vegano:{informacion.info.vegan}</Text>
+            &&<><Text>titulo de la comida; {title}</Text>
           
+            <Image 
+                    style={{ width: 150, height: 150, marginTop:30, borderRadius: 20 }}
+                    source={{uri: image}}
+                />
+                <Text>Vegano: {informacion.vegan ? 'Si' : 'No'}</Text>
+                <Text>Precio: ${informacion.pricePerServing}</Text>
+                <Text>Tiempo de preparacion: {informacion.readyInMinutes} minutos</Text>
+          </>
              }
+
+
+            
          
         
         
