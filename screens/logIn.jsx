@@ -1,13 +1,13 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, FlatList, TextInput, TouchableOpacity, ScrollView, Alert} from 'react-native';
 import BotonOne from "../components/BotonOne";
 import { useNavigation } from '@react-navigation/native';
-
+import {useContextState, ActionTypes} from '../contextState'
 import {enterlogin} from '../services/loginService';
 import Girador from '../components/girador';
 
 const logIn =({navigation})=>{
- 
+  const {contextState, setContextState} = useContextState()
   const [userState, setUserState] = useState({
     email: '',
     password: '',
@@ -22,10 +22,17 @@ const logIn =({navigation})=>{
       Alert.alert("Por favor ingresar todos los datos")
     } else {
       setLoaded(true)
-      await enterlogin(userState).then(() => {
+      await enterlogin(userState).then((response) => {
+
+        setContextState({
+          type: ActionTypes.setToken,
+          value: response
+      })
+
         setLoaded(false)
-        Alert.alert("correctooooo")
+        console.log("correctooooo")
         navigation.navigate("Home")
+
       })
       .catch(() => {
         setLoaded(false)

@@ -11,7 +11,8 @@ export const enterlogin = async (userState) => {
       ...userState
     })
     .then(async(res) => {
-      
+      console.log(res.data.token)
+      return res.data.token
     })
     .catch((e) => {
       console.log(`register error`, e.response);

@@ -17,7 +17,11 @@ return(
         headerShown:false
     }
     }>
-        
+         <Stack.Screen
+                    name='logIn'
+                    component={logIn}
+                />
+
         <Stack.Screen 
             name='Home'>
                 {(props) => <Home {...props}
