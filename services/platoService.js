@@ -30,7 +30,7 @@ export const getReciepesInformation = async (id) => {
       .then(async(res) => {
         
         const info=res.data
-        
+        console.log(info)
         return info
       })
       .catch((e) => {

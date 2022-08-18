@@ -34,6 +34,10 @@ const InformacionPlatos =({navigation, route})=>{
       });
     }
 
+    const agregarMenu = async (e) => {
+      
+    }
+
     useEffect(() => {
         (async () => {
           await masInformacion()
@@ -53,9 +57,12 @@ const InformacionPlatos =({navigation, route})=>{
                     style={{ width: 150, height: 150, marginTop:30, borderRadius: 20 }}
                     source={{uri: image}}
                 />
-                <Text>Vegano: {informacion.vegan ? 'Si' : 'No'}</Text>
                 <Text>Precio: ${informacion.pricePerServing}</Text>
+                <Text>Vegano: {informacion.vegan ? 'Si' : 'No'}</Text>
+                <Text>instrucciones del plato: {informacion.instructions}</Text>
                 <Text>Tiempo de preparacion: {informacion.readyInMinutes} minutos</Text>
+                <Text>health score: {informacion.healthScore}</Text>
+
           </>
              }
 
