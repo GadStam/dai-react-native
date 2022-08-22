@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import logIn from '../screens/logIn'
 import Home from '../screens/Home'
 import InformacionPlatos from '../screens/InformacionPlatos'
+import MenuComida from '../screens/MenuComida'
 const Stack = createNativeStackNavigator()
 
 const MainStack =()=>{
@@ -33,6 +34,12 @@ return(
                 {(props) => <InformacionPlatos {...props}
             />}
         </Stack.Screen>
+        
+        <Stack.Screen
+                    name='MenuComida'
+                    component={MenuComida}
+                />
+
 
         
          

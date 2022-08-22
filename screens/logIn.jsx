@@ -14,6 +14,7 @@ const logIn =({navigation})=>{
   });
 
   const [loaded, setLoaded] = useState(false)
+  
 
   const onLogInPress = async (e) => {
     
@@ -23,7 +24,8 @@ const logIn =({navigation})=>{
     } else {
       setLoaded(true)
       await enterlogin(userState).then((response) => {
-
+        
+        console.log("hola", response)
         setContextState({
           type: ActionTypes.setToken,
           value: response
@@ -31,6 +33,7 @@ const logIn =({navigation})=>{
 
         setLoaded(false)
         console.log("correctooooo")
+        console.log(contextState.token)
         navigation.navigate("Home")
 
       })

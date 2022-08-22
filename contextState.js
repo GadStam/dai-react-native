@@ -9,6 +9,8 @@ export const initialState = {
         platoNoVeganos:0,
         platoVeganos:0,
         cantidadPlatos:0,
+        healthScore:0,
+        promedioHealthScore:0,
         listaPlatos:[]
     }
 }

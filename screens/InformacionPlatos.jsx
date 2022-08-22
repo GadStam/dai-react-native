@@ -6,6 +6,8 @@ import { getReciepesInformation } from '../services/platoService';
 import CardsComidas from '../components/CardsComidas'
 import {enterlogin} from '../services/loginService';
 import Girador from '../components/girador';
+import {ActionTypes, useContextState} from '../contextState'
+
 
 
 
@@ -15,7 +17,7 @@ const InformacionPlatos =({navigation, route})=>{
     const title=route.params.foodTitle
 
 
-
+    const {contextState, setContextState} = useContextState()
     const [informacion, setInformacion] = useState([])
 
       const [loadState, setLoaded] = useState(false)
@@ -25,7 +27,7 @@ const InformacionPlatos =({navigation, route})=>{
         console.log("hola",response)
         setLoaded(true)
         setInformacion(response)
-        console.log(informacion, "goda")
+        
       })
       .catch(() => {
         console.log("noooo")
@@ -34,8 +36,54 @@ const InformacionPlatos =({navigation, route})=>{
       });
     }
 
-    const agregarMenu = async (e) => {
+    const agregarMenu = (vegano, precioPlato, healthScorePlato) => {
+      let platosNoVeganos=0;
+      let platosVeganos=0;
+      let HealthTotal = contextState.menu.healthScore + healthScorePlato
+
+      switch (vegano) {
+        case true:
+          platosVeganos = 1
+          break;
+        case false:
+        platosNoVeganos = 1
+      }
+
       
+
+          if(platosVeganos==1 && contextState.menu.platoVeganos==2){
+            Alert.alert("Llegaste al maximo de platos veganos")
+            console.log("No se admiten mas platos veganos")
+        }else if(platosNoVeganos==1 && contextState.menu.platoNoVeganos==2){
+            Alert.alert("Llegaste al maximo de platos NO veganos")
+            console.log("No se admiten mas platos no veganos")
+        }else{
+            setContextState({
+                type: ActionTypes.setMenu,
+                value:{
+                    platoNoVeganos: (contextState.menu.platoNoVeganos + platosNoVeganos),
+                    platoVeganos: (contextState.menu.platoVeganos + platosVeganos),
+                    precio: (contextState.menu.precio + precioPlato),
+
+                    healthScore: (contextState.menu.healthScore + healthScorePlato),
+                    promedioHealthScore: (HealthTotal/ (contextState.menu.cantidadPlatos +1)),
+                    
+                    cantidadPlatos: (contextState.menu.cantidadPlatos + 1),
+                    
+                    listaPlatos:[...contextState.menu.listaPlatos, informacion]
+                }
+            })
+            console.log(contextState.menu)
+            navigation.navigate('Home')
+        }
+
+
+      
+
+
+
+
+
     }
 
     useEffect(() => {
@@ -59,9 +107,12 @@ const InformacionPlatos =({navigation, route})=>{
                 />
                 <Text>Precio: ${informacion.pricePerServing}</Text>
                 <Text>Vegano: {informacion.vegan ? 'Si' : 'No'}</Text>
-                <Text>instrucciones del plato: {informacion.instructions}</Text>
                 <Text>Tiempo de preparacion: {informacion.readyInMinutes} minutos</Text>
                 <Text>health score: {informacion.healthScore}</Text>
+                <BotonOne
+                 text="agregar al menu"
+                 title="Iniciar Sesion"
+                 onPress={(e) => agregarMenu(informacion.vegan, informacion.pricePerServing, informacion.healthScore)}/>
 
           </>
              }

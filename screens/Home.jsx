@@ -67,7 +67,11 @@ const Home =({navigation, route})=>{
           />
 
 
-        
+        <BotonOne 
+            text="MENU"
+            title="MENU"
+            onPress= {()=>{navigation.navigate("MenuComida")}}
+            />
 
 
         {
