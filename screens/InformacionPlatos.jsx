@@ -40,6 +40,7 @@ const InformacionPlatos =({navigation, route})=>{
       let platosNoVeganos=0;
       let platosVeganos=0;
       let HealthTotal = contextState.menu.healthScore + healthScorePlato
+      console.log("hola gagaga",vegano)
 
       switch (vegano) {
         case true:
@@ -58,6 +59,7 @@ const InformacionPlatos =({navigation, route})=>{
             Alert.alert("Llegaste al maximo de platos NO veganos")
             console.log("No se admiten mas platos no veganos")
         }else{
+          console.log("entro al context")
             setContextState({
                 type: ActionTypes.setMenu,
                 value:{
@@ -73,7 +75,7 @@ const InformacionPlatos =({navigation, route})=>{
                     listaPlatos:[...contextState.menu.listaPlatos, informacion]
                 }
             })
-            console.log(contextState.menu)
+            
             navigation.navigate('Home')
         }
 

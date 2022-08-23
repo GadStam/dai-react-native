@@ -7,9 +7,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const searchRecipe = async (comida) => {
     console.log(comida)
     return spoonClient
-    .get(`recipes/complexSearch?apiKey=5fbfaca6af9949e48de98190593f70f9&query=${comida}`, {
+    .get(`recipes/complexSearch?apiKey=5fbfaca6af9949e48de98190593f70f9&query=${comida}`, 
       
-    })
+    )
     .then(async(res) => {
         const info=res.data.results
         
@@ -24,9 +24,9 @@ export const searchRecipe = async (comida) => {
 export const getReciepesInformation = async (id) => {
     console.log(id)
     return spoonClient
-      .get(`recipes/${id}/information?apiKey=5fbfaca6af9949e48de98190593f70f9`, {
+      .get(`recipes/${id}/information?apiKey=5fbfaca6af9949e48de98190593f70f9`, 
         
-      })
+      )
       .then(async(res) => {
         
         const info=res.data

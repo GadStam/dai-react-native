@@ -5,7 +5,7 @@ import Boton from './BotonOne'
 import {getReciepesInformation} from '../services/platoService'
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-
+import {ActionTypes, useContextState} from '../contextState'
 
 
 
@@ -13,7 +13,7 @@ const CardsComidas = (props) => {
   
 
   const navigation = useNavigation();
-  
+  const {contextState, setContextState} = useContextState()
     const navegarInfo = async (e) => {
       console.log(props.id)
       navigation.navigate("InformacionPlatos", {idPlato: props.id, foodImage: props.image, foodTitle: props.title})
@@ -29,6 +29,18 @@ const CardsComidas = (props) => {
     </Card.Content>
     <Card.Cover source={{ uri: props.image }} />
     <Card.Actions>
+     {contextState.menu.listaPlatos.filter((element)=>element.id==props.id) ?
+        <Boton
+            text="eliminAR"
+            title="Mas Info"
+            onPress={ (e) =>{
+              navigation.navigate('Home')
+              }}
+            />
+        :
+        <Text>ya esta EN EL MENU</Text>
+      }
+      
     <Boton
             text="Mas Info"
             title="Mas Info"

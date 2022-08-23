@@ -7,11 +7,17 @@ import { useNavigation } from '@react-navigation/native';
 import {searchRecipe} from '../services/platoService'
 import CardsComidas from '../components/CardsComidas';
 import {useContextState} from '../contextState'
+import { useEffect } from 'react';
 
 const MenuComida =({navigation})=>{
     
   const {contextState, setContextState} = useContextState();
     
+  useEffect(() => {
+    (async () => {
+      console.log(contextState.menu)
+    })()
+  }, [])
 
   return (
 

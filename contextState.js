@@ -23,10 +23,13 @@ export const ActionTypes = {
 export const reducer = (state = {}, action) => {
     switch(action.type){
         case ActionTypes.setMenu:
-            return{
+            const foo= {
                 ...state,
-                menu: action.value
-            };
+                menu: {...action.value}
+            }
+            console.log(foo)
+            console.log(action.value)
+            return foo;
         case ActionTypes.setToken:
             return{
                 ...state,
