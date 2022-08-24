@@ -26,12 +26,20 @@ const MenuComida =({navigation})=>{
        
         {
                 contextState.menu.listaPlatos.length == 0
-                ?
+                ? 
+                <>
                 <Text>No hay platos en el menu</Text>
+
+                <BotonOne 
+                text="Home"
+                title="Home"
+                onPress= {()=>{navigation.navigate("Home")}}
+                />
+                </>
                 :
                 <>
                 <Text>Menu</Text>
-                <Text>Precio promedio: ${contextState.menu.precio}</Text>
+                <Text>Precio: ${contextState.menu.precioMenu}</Text>
                 <Text>HealthScore promedio: {contextState.menu.promedioHealthScore} puntos</Text>
                 <Text>Cantidad de platos veganos: {contextState.menu.platoVeganos}</Text>
                 <Text>Cantidad de platos no veganos: {contextState.menu.platoNoVeganos}</Text>

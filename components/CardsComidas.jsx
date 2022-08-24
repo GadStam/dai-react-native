@@ -1,23 +1,65 @@
 import * as React from 'react';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
-import { StyleSheet, Alert} from 'react-native';
+import { StyleSheet, Alert, Text} from 'react-native';
 import Boton from './BotonOne'
 import {getReciepesInformation} from '../services/platoService'
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import {ActionTypes, useContextState} from '../contextState'
+import {ActionTypes, useContextState, modificarEliminar} from '../contextState'
 
 
 
 const CardsComidas = (props) => {
-  
-
-  const navigation = useNavigation();
   const {contextState, setContextState} = useContextState()
+  console.log(props.id)
+  const existen = contextState.menu.listaPlatos.find((element)=>element.id==props.id)
+  console.log("hoola",existen)
+  const navigation = useNavigation();
     const navegarInfo = async (e) => {
-      console.log(props.id)
+      
       navigation.navigate("InformacionPlatos", {idPlato: props.id, foodImage: props.image, foodTitle: props.title})
     }
+
+  const eliminarPlato = ( id ) => {
+    let platosNoVeganos=0;
+    let platosVeganos=0;
+    console.log(id)
+    console.log(contextState.menu.listaPlatos)
+    const newMenu=contextState.menu.listaPlatos.filter(word => word.id =! id)
+    const platoEliminado=contextState.menu.listaPlatos.filter(word => word.id == id)
+    
+    console.log(platoEliminado)
+    let HealthTotal = contextState.menu.healthScore - platoEliminado[0].healthScore
+
+
+    
+    switch (platoEliminado[0].vegan) {
+        case true:
+          platosVeganos = 1
+          break;
+        case false:
+        platosNoVeganos = 1
+      }
+
+      setContextState({
+        type: ActionTypes.setMenu,
+        value:{ 
+        platoNoVeganos:(contextState.menu.platoNoVeganos - platosNoVeganos),
+        platoVeganos:(contextState.menu.platoVeganos - platosVeganos),
+        precioMenu:(contextState.menu.precioMenu - platoEliminado[0].pricePerServing),
+
+        healthScore:(contextState.menu.healthScore - platoEliminado[0].healthScore),
+        promedioHealthScore:(HealthTotal/ (contextState.menu.cantidadPlatos -1)),
+                  
+        cantidadPlatos:(contextState.menu.cantidadPlatos - 1),
+        listaPlatos:newMenu
+          
+        }
+      })
+      
+
+    navigation.navigate("Home")
+  }
 
     
   return(
@@ -29,24 +71,25 @@ const CardsComidas = (props) => {
     </Card.Content>
     <Card.Cover source={{ uri: props.image }} />
     <Card.Actions>
-     {contextState.menu.listaPlatos.filter((element)=>element.id==props.id) ?
+     {!existen ?
+      <Boton
+      text="Mas Info"
+      title="Mas Info"
+      onPress={navegarInfo}
+      />
+    :
+        <>
         <Boton
-            text="eliminAR"
-            title="Mas Info"
-            onPress={ (e) =>{
-              navigation.navigate('Home')
-              }}
-            />
-        :
-        <Text>ya esta EN EL MENU</Text>
-      }
+        text="eliminar"
+        title="Mas Info"
+        onPress={ (e) =>{
+          eliminarPlato(props.id)
+          }}
+        />
+        </>
+        }
       
-    <Boton
-            text="Mas Info"
-            title="Mas Info"
-            onPress={navegarInfo}
-            />
-      <Button>Ok</Button>
+   
     </Card.Actions>
   </Card>
 

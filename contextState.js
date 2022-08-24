@@ -14,6 +14,9 @@ export const initialState = {
         listaPlatos:[]
     }
 }
+    
+
+
 
 export const ActionTypes = {
     setMenu:'SET_MENU',

@@ -85,6 +85,7 @@ const Home =({navigation, route})=>{
            image = {item.image}
            id = {item.id}
 
+
            />
           
             

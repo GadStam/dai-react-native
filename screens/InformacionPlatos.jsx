@@ -65,7 +65,7 @@ const InformacionPlatos =({navigation, route})=>{
                 value:{
                     platoNoVeganos: (contextState.menu.platoNoVeganos + platosNoVeganos),
                     platoVeganos: (contextState.menu.platoVeganos + platosVeganos),
-                    precio: (contextState.menu.precio + precioPlato),
+                    precioMenu: (contextState.menu.precioMenu + precioPlato),
 
                     healthScore: (contextState.menu.healthScore + healthScorePlato),
                     promedioHealthScore: (HealthTotal/ (contextState.menu.cantidadPlatos +1)),
