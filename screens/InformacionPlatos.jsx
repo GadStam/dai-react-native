@@ -21,7 +21,7 @@ const InformacionPlatos =({navigation, route})=>{
     const [informacion, setInformacion] = useState([])
 
       const [loadState, setLoaded] = useState(false)
- 
+
   const masInformacion = async (e) => {
       await getReciepesInformation(id).then((response) => {
         console.log("hola",response)
@@ -99,7 +99,7 @@ const InformacionPlatos =({navigation, route})=>{
 
           <View>
 
-             {
+            {
             loadState
             &&<><Text>titulo de la comida; {title}</Text>
           
@@ -112,23 +112,24 @@ const InformacionPlatos =({navigation, route})=>{
                 <Text>Tiempo de preparacion: {informacion.readyInMinutes} minutos</Text>
                 <Text>health score: {informacion.healthScore}</Text>
                 <BotonOne
-                 text="agregar al menu"
-                 title="Iniciar Sesion"
-                 onPress={(e) => agregarMenu(informacion.vegan, informacion.pricePerServing, informacion.healthScore)}/>
-
+                  text="agregar al menu"
+                  title="Iniciar Sesion"
+                  onPress={(e) => agregarMenu(informacion.vegan, informacion.pricePerServing, informacion.healthScore)}/>
+                <BotonOne 
+                text="Home"
+                title="Home"
+                onPress= {()=>{navigation.navigate("Home")}}
+                />     
           </>
-             }
+            }
 
 
             
-         
+        
         
         
                   
-         </View>
-     
-        
-       
+        </View>
         
   );
 }

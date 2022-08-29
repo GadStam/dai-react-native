@@ -20,15 +20,16 @@ const CardsComidas = (props) => {
       navigation.navigate("InformacionPlatos", {idPlato: props.id, foodImage: props.image, foodTitle: props.title})
     }
 
-  const eliminarPlato = ( id ) => {
+  const eliminarPlato = ( id, image ) => {
     let platosNoVeganos=0;
     let platosVeganos=0;
     console.log(id)
-    console.log(contextState.menu.listaPlatos)
-    const newMenu=contextState.menu.listaPlatos.filter(word => word.id =! id)
-    const platoEliminado=contextState.menu.listaPlatos.filter(word => word.id == id)
+    console.log("el menu",contextState.menu.listaPlatos)
+    const newMenu=contextState.menu.listaPlatos.filter(word => word.id !== id)
+    const platoEliminado=contextState.menu.listaPlatos.filter(word => word.id === id)
     
-    console.log(platoEliminado)
+    console.log("el plato eliminado",platoEliminado)
+    console.log("el nuevo menu",newMenu)
     let HealthTotal = contextState.menu.healthScore - platoEliminado[0].healthScore
 
 
@@ -67,11 +68,11 @@ const CardsComidas = (props) => {
     
     <Card.Content>
       <Title>{props.title}</Title>
-     
+    
     </Card.Content>
     <Card.Cover source={{ uri: props.image }} />
     <Card.Actions>
-     {!existen ?
+    {!existen ?
       <Boton
       text="Mas Info"
       title="Mas Info"
@@ -83,7 +84,7 @@ const CardsComidas = (props) => {
         text="eliminar"
         title="Mas Info"
         onPress={ (e) =>{
-          eliminarPlato(props.id)
+          eliminarPlato(props.id, props.image)
           }}
         />
         </>

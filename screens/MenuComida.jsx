@@ -23,18 +23,13 @@ const MenuComida =({navigation})=>{
 
 
           <View>
-       
+    
         {
                 contextState.menu.listaPlatos.length == 0
                 ? 
                 <>
                 <Text>No hay platos en el menu</Text>
 
-                <BotonOne 
-                text="Home"
-                title="Home"
-                onPress= {()=>{navigation.navigate("Home")}}
-                />
                 </>
                 :
                 <>
@@ -50,25 +45,29 @@ const MenuComida =({navigation})=>{
             data={contextState.menu.listaPlatos}
             renderItem={({item}) =>(
 
-           <CardsComidas title = {item.title}
-           image = {item.image}
-           id = {item.id}
+          <CardsComidas title = {item.title}
+          image = {item.image}
+          id = {item.id}
 
-           />
+          />
           
+          
+        )}
+        />
+        <BotonOne 
+                text="Home"
+                title="Home"
+                onPress= {()=>{navigation.navigate("Home")}}
+                />             
             
-         )}
-        />             
-
-            
-         
+        
         
         
                   
-         </View>
-     
+        </View>
+    
         
-       
+    
         
   );
 }
