@@ -16,6 +16,9 @@ const MenuComida =({navigation})=>{
   useEffect(() => {
     (async () => {
       console.log(contextState.menu)
+      if(contextState.token===""){
+        navigation.navigate("/logIn")
+      }
     })()
   }, [])
 

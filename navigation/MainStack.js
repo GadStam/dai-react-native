@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
-import logIn from '../screens/logIn'
+import LogIn from '../screens/LogIn'
 import Home from '../screens/Home'
 import InformacionPlatos from '../screens/InformacionPlatos'
 import MenuComida from '../screens/MenuComida'
@@ -18,6 +18,10 @@ return(
         headerShown:false
     }
     }>
+        <Stack.Screen
+                    name='LogIn'
+                    component={LogIn}
+        />
 
         <Stack.Screen 
             name='Home'>
@@ -35,6 +39,8 @@ return(
                     name='MenuComida'
                     component={MenuComida}
                 />
+
+
 
 
         

@@ -6,7 +6,7 @@ import {useContextState, ActionTypes} from '../contextState'
 import {enterlogin} from '../services/loginService';
 import Girador from '../components/girador';
 
-const logIn =({navigation})=>{
+const LogIn =({navigation})=>{
   const {contextState, setContextState} = useContextState()
   const [userState, setUserState] = useState({
     email: '',
@@ -89,7 +89,7 @@ const logIn =({navigation})=>{
   );
 }
 
-export default logIn
+export default LogIn
 
 const styles = StyleSheet.create({
   logo: {

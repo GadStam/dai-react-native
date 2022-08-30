@@ -6,19 +6,35 @@ import BotonOne from "../components/BotonOne";
 import { useNavigation } from '@react-navigation/native';
 import {searchRecipe} from '../services/platoService'
 import CardsComidas from '../components/CardsComidas';
+import {ActionTypes, useContextState} from '../contextState'
+import { useEffect } from 'react';
+
 
 const Home =({navigation, route})=>{
     const [plato, setPlato] = useState({
       platoComida:""
     });
 
+
+
+
     const [platoBuscar, setPlatoBuscar] = useState({
         lista: []
     })
+
+    const {contextState, setContextState} = useContextState()
+
+    console.log(contextState.token)
         
     const [loadState, setLoaded] = useState(false)
 
-
+    useEffect(() => {
+      (async () => {
+        if(contextState.token===""){
+          navigation.navigate("logIn")
+        }
+      })()
+    }, [])
 
 
 
@@ -28,7 +44,7 @@ const Home =({navigation, route})=>{
         let largo = buscado.length
         
         if (!buscado || largo < 3){  
-          Alert.alert("Por favor ingresa un plato")
+          console.log("Nada")
          
           
         } else {
@@ -41,7 +57,6 @@ const Home =({navigation, route})=>{
             console.log("tus comidas", platoBuscar.lista )
            
 
-            Alert.alert("correctooooo")
           })
           .catch(() => {
             console.log("noooo")

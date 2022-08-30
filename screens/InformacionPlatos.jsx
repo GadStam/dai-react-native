@@ -90,6 +90,9 @@ const InformacionPlatos =({navigation, route})=>{
 
     useEffect(() => {
         (async () => {
+          if(contextState.token===""){
+            navigation.navigate("/logIn")
+          }
           await masInformacion()
         })()
       }, [])
