@@ -75,8 +75,9 @@ const LogIn =({navigation})=>{
           />   
           
           <BotonOne
-            text="Iniciar Sesion"
-            title="Iniciar Sesion"
+            text="Log In"
+            title="Iniciar S
+            esion"
             onPress={onLogInPress}
             />
             
@@ -98,9 +99,9 @@ const styles = StyleSheet.create({
     marginTop: 200,
   },
   vista: {
-    height: 900,
+    height: "100%",
     alignItems: 'center',
-    backgroundColor: 'gray',
+    backgroundColor: '#d4dbb2',
     
     
 
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
   titulo: {
     textAlign: 'center',
     marginBottom: 20,
-    color: 'blue',
+    color: '9dcdee',
     fontSize:25,
     
   },
@@ -129,14 +130,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top:'7%',
     left:'15%',
-    color: 'blue',
+    color: '9dcdee',
     textDecorationLine:'underline'
   },
   flecha:{
     position: 'absolute',
     top:'7.3%',
     left:'10%',
-    color:"blue"
+    color:"9dcdee"
   }
 
 });

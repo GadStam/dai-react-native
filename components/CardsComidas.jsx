@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { StyleSheet, Alert, Text} from 'react-native';
 import Boton from './BotonOne'
+import BotonEliminar from './BotonEliminar';
 import {getReciepesInformation} from '../services/platoService'
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
@@ -73,14 +74,14 @@ const CardsComidas = (props) => {
     <Card.Cover source={{ uri: props.image }} />
     <Card.Actions>
     {!existen ?
-      <Boton
+      <Boton style={styles.masInfo}
       text="Mas Info"
       title="Mas Info"
       onPress={navegarInfo}
       />
     :
         <>
-        <Boton
+        <BotonEliminar
         text="eliminar"
         title="Mas Info"
         onPress={ (e) =>{
@@ -103,6 +104,18 @@ export default CardsComidas;
 
 const styles = StyleSheet.create({
   carta: {
-    marginTop:20
-}
+    marginTop:20,
+    width:"100%",
+
+},
+  masInfo: {
+    alignItems: 'center'
+  },
+  eliminar:{
+    backgroundColor: "white",
+  },
+  image: {
+    width:"75",
+    alignItems: 'center',
+  }
 });

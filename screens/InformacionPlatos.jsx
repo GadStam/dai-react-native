@@ -90,9 +90,10 @@ const InformacionPlatos =({navigation, route})=>{
 
     useEffect(() => {
         (async () => {
+          /*
           if(contextState.token===""){
             navigation.navigate("/logIn")
-          }
+          }*/
           await masInformacion()
         })()
       }, [])
@@ -100,11 +101,11 @@ const InformacionPlatos =({navigation, route})=>{
   return (
 
 
-          <View>
+          <View style={styles.vista}>
 
             {
             loadState
-            &&<><Text>titulo de la comida; {title}</Text>
+            &&<><Text style={styles.titulo}>{title}</Text>
           
             <Image 
                     style={{ width: 150, height: 150, marginTop:30, borderRadius: 20 }}
@@ -145,12 +146,10 @@ const styles = StyleSheet.create({
     height: '22%',
     marginTop: 200,
   },
-  vista: {
-    height: 900,
+  vista:{
+    backgroundColor: '#d4dbb2',
+    height:"100%",
     alignItems: 'center',
-    backgroundColor: 'gray',
-    
-    
 
   },
   titulo: {
@@ -185,6 +184,10 @@ const styles = StyleSheet.create({
     top:'7.3%',
     left:'10%',
     color:"blue"
-  }
+  },
+  titulo: {
+    color: 'green',
+    fontSize: 30,
+  },
 
 });

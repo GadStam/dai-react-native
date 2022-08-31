@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
-const BotonOne = (props) => {
+const BotonEliminar = (props) => {
 
     const { onPress, text } = props
 
@@ -21,7 +21,7 @@ const BotonOne = (props) => {
     )
 }
 
-export default BotonOne
+export default BotonEliminar
 
 
 const style = StyleSheet.create({
@@ -32,13 +32,13 @@ const style = StyleSheet.create({
         fontSize: 18
     },
     button: {
-        backgroundColor: '#5207f2',
+        backgroundColor: 'red',
         borderWidth:2,
         borderColor: 'lightblue',
         borderRadius: 15,
         padding: 15,
         marginTop:'9%',
-        marginBottom:'10%',
+        marginBottom:'30%',
         width: '80%'
     },
 

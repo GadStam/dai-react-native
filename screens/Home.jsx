@@ -28,13 +28,13 @@ const Home =({navigation, route})=>{
         
     const [loadState, setLoaded] = useState(false)
 
-    useEffect(() => {
+   /* useEffect(() => {
       (async () => {
         if(contextState.token===""){
           navigation.navigate("logIn")
         }
       })()
-    }, [])
+    }, [])*/
 
 
 
@@ -69,12 +69,13 @@ const Home =({navigation, route})=>{
     
   return (
 
-      <View>
+      <View style={styles.vista}>
       
+      <Text style={styles.titulo}>Buscar platos</Text>
       <TextInput
             style={styles.textInput}
             
-            placeholder="Buscador"
+            placeholder="Busque un plato"
             name="Buscador"
             value={plato.platoComida}
             onChangeText={(buscado) => {setPlato({platoComida: buscado});onBusquedaPress(buscado)}}
@@ -139,7 +140,27 @@ const styles = StyleSheet.create({
     
   },
   textInput:{
-    marginTop: 200,
-    backgroundColor:'white'
-  }
+    marginTop: "2%",
+    backgroundColor:'white',
+    height:25,
+    width:"50%",
+    borderRadius: 2,
+  },
+  vista:{
+    backgroundColor: '#d4dbb2',
+    height:"100%",
+    alignItems: 'center',
+
+  },
+  titulo: {
+    textAlign: 'center',
+    marginBottom: 20,
+    color: '9dcdee',
+    fontSize:25,
+    
+  },
+
+  /*lista:{
+    marginTop
+  }*/
 });
