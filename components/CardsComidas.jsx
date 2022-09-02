@@ -82,7 +82,7 @@ const CardsComidas = (props) => {
     :
         <>
         <BotonEliminar
-        text="eliminar"
+        text="Eliminar"
         title="Mas Info"
         onPress={ (e) =>{
           eliminarPlato(props.id, props.image)

@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, FlatList, TextInput, TouchableOpacity, ScrollView, Alert} from 'react-native';
 import BotonOne from "../components/BotonOne";
+import BotonAgregar from "../components/BotonAgregar"
 import { useNavigation } from '@react-navigation/native';
 import { getReciepesInformation } from '../services/platoService';
 import CardsComidas from '../components/CardsComidas'
@@ -115,15 +116,15 @@ const InformacionPlatos =({navigation, route})=>{
                 <Text>Vegano: {informacion.vegan ? 'Si' : 'No'}</Text>
                 <Text>Tiempo de preparacion: {informacion.readyInMinutes} minutos</Text>
                 <Text>health score: {informacion.healthScore}</Text>
-                <BotonOne
-                  text="agregar al menu"
-                  title="Iniciar Sesion"
-                  onPress={(e) => agregarMenu(informacion.vegan, informacion.pricePerServing, informacion.healthScore)}/>
                 <BotonOne 
                 text="Home"
                 title="Home"
-                onPress= {()=>{navigation.navigate("Home")}}
-                />     
+                onPress= {()=>{navigation.navigate("Home")}}/>    
+                <BotonAgregar
+                  text="Agregar al menu"
+                  title="Iniciar Sesion"
+                  onPress={(e) => agregarMenu(informacion.vegan, informacion.pricePerServing, informacion.healthScore)}/>
+  
           </>
             }
 
