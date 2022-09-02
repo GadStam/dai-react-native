@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
-import LogIn from '../screens/LogIn'
+import LogIn from '../screens/logIn'
 import Home from '../screens/Home'
 import InformacionPlatos from '../screens/InformacionPlatos'
 import MenuComida from '../screens/MenuComida'
